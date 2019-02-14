@@ -46,6 +46,12 @@ class RemoveBg:
         __output_file__(response, new_file_name)
 
     def remove_background_from_base64_img(self, base64_img, size="regular", new_file_name="no-bg.png"):
+        """
+        Removes the background given a base64 image string and outputs the file as the given new file name.
+        :param base64_img: the base64 image string
+        :param size: the size of the output image (regular = 0.25 MP, hd = 4 MP, 4k = up to 10 MP)
+        :param new_file_name: the new file name of the image with the background removed
+        """
         response = requests.post(
             API_ENDPOINT,
             data={
