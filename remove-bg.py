@@ -1,12 +1,13 @@
 import requests
+import logging
 
 API_ENDPOINT = "https://api.remove.bg/v1.0/removebg"
 
-
 class RemoveBg:
 
-    def __init__(self, api_key):
+    def __init__(self, api_key, error_log_file):
         self.__api_key = api_key
+        logging.basicConfig(filename=error_log_file)
 
     def remove_background_from_img_file(self, img_file_path, size="regular"):
         """
@@ -70,4 +71,5 @@ def __output_file__(response, new_file_name):
             removed_bg_file.write(response.content)
     # Otherwise, print out the error
     else:
-        print("Error: ", response.status_code, response.text)
+        error_reason = response.json()["errors"][0]["title"].lower()
+        logging.error("Unable to save %s due to %s", new_file_name, error_reason)
