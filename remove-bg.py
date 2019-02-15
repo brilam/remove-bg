@@ -3,6 +3,7 @@ import logging
 
 API_ENDPOINT = "https://api.remove.bg/v1.0/removebg"
 
+
 class RemoveBg:
 
     def __init__(self, api_key, error_log_file):
@@ -24,7 +25,7 @@ class RemoveBg:
             data={'size': size},
             headers={'X-Api-Key': self.__api_key})
 
-        __output_file__(response, img_file.name + "_no_bg.png")
+        self.__output_file__(response, img_file.name + "_no_bg.png")
 
         # Close original file
         img_file.close()
@@ -44,7 +45,7 @@ class RemoveBg:
             },
             headers={'X-Api-Key': self.__api_key}
         )
-        __output_file__(response, new_file_name)
+        self.__output_file__(response, new_file_name)
 
     def remove_background_from_base64_img(self, base64_img, size="regular", new_file_name="no-bg.png"):
         """
@@ -61,15 +62,18 @@ class RemoveBg:
             },
             headers={'X-Api-Key': self.__api_key}
         )
-        __output_file__(response, new_file_name)
+        self.__output_file__(response, new_file_name)
 
+    def __output_file__(self, response, new_file_name):
+        # If successful, write out the file
+        if response.status_code == requests.codes.ok:
+            with open(new_file_name, 'wb') as removed_bg_file:
+                removed_bg_file.write(response.content)
+        # Otherwise, print out the error
+        else:
+            error_reason = response.json()["errors"][0]["title"].lower()
+            logging.error("Unable to save %s due to %s", new_file_name, error_reason)
 
-def __output_file__(response, new_file_name):
-    # If successful, write out the file
-    if response.status_code == requests.codes.ok:
-        with open(new_file_name, 'wb') as removed_bg_file:
-            removed_bg_file.write(response.content)
-    # Otherwise, print out the error
-    else:
-        error_reason = response.json()["errors"][0]["title"].lower()
-        logging.error("Unable to save %s due to %s", new_file_name, error_reason)
+if __name__ == "__main__":
+    rmbg = RemoveBg("biP7sFBkJkNP9aPN7VcZy7QE", "error.log")
+    rmbg.remove_background_from_img_url("https://c-sf.smule.com/sf/s35/arr/c4/02/93d33eb2-0215-4939-a788-6362b837c51c.jpg")
