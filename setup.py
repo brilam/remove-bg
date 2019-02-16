@@ -2,7 +2,7 @@ from distutils.core import setup
 setup(
   name = 'removebg',         # How you named your package folder (MyLib)
   packages = ['removebg'],   # Chose the same as "name"
-  version = '0.01',      # Start with a small number and increase it with every change you make
+  version = '0.02',      # Start with a small number and increase it with every change you make
   license='gpl-3.0',        # Chose a license from here: https://help.github.com/articles/licensing-a-repository
   description = "A Python API wrapper for removing background using remove.bg's API",   # Give a short description about your library
   author = 'Brian Lam',                   # Type in your name
