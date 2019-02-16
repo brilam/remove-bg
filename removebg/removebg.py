@@ -73,7 +73,3 @@ class RemoveBg:
         else:
             error_reason = response.json()["errors"][0]["title"].lower()
             logging.error("Unable to save %s due to %s", new_file_name, error_reason)
-
-if __name__ == "__main__":
-    rmbg = RemoveBg("biP7sFBkJkNP9aPN7VcZy7QE", "error.log")
-    rmbg.remove_background_from_img_url("https://c-sf.smule.com/sf/s35/arr/c4/02/93d33eb2-0215-4939-a788-6362b837c51c.jpg")
