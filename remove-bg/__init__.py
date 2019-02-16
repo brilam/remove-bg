@@ -1,0 +1,1 @@
+from remove-bg.remove-bg import RemoveBg
