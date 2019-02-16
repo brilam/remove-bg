@@ -8,7 +8,7 @@ setup(
   author = 'Brian Lam',                   # Type in your name
   author_email = 'brian_lam@live.com',      # Type in your E-Mail
   url = 'https://github.com/brilam/remove-bg',   # Provide either the link to your github or to your website
-  download_url = 'https://github.com/brilam/remove-bg/archive/v_001.tar.gz',    # I explain this later on
+  download_url = 'https://github.com/brilam/remove-bg/archive/v_003.tar.gz',    # I explain this later on
   keywords = ['remove-bg', 'remove', 'background'],   # Keywords that define your package best
   install_requires=[
           'requests'
