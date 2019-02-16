@@ -2,7 +2,7 @@
 A Python API wrapper for removing backgrounds from picture using remove.bg's API
 
 # License
-This code is licensed under GNU GPL v3.0. See [here](https://github.com/brilam/remove-bg/blob/master/LICENSE) for more details.
+This code is licensed under the MIT License. See [here](https://github.com/brilam/remove-bg/blob/master/LICENSE) for more details.
 
 # Installation
 `pip install removebg`
@@ -18,6 +18,8 @@ This code is licensed under GNU GPL v3.0. See [here](https://github.com/brilam/r
 
 ### Code Example:
 ```python
+from removebg import RemoveBg
+
 rmbg = RemoveBg("YOUR-API-KEY", "error.log")
 rmbg.remove_background_from_img_file("joker.jpg")
 ```
@@ -32,6 +34,8 @@ rmbg.remove_background_from_img_file("joker.jpg")
 
 ### Code Example:
 ```python
+from removebg import RemoveBg
+
 rmbg = RemoveBg("YOUR-API-KEY", "error.log")
 rmbg.remove_background_from_img_url("http://www.example.com/some_image.jpg")
 ```
@@ -46,7 +50,9 @@ rmbg.remove_background_from_img_url("http://www.example.com/some_image.jpg")
 
 ### Code Example:
 ```python
+from removebg import RemoveBg
 import base64
+
 rmbg = RemoveBg("YOUR-API-KEY", "error.log")
 with open("joker.jpg", "rb") as image_file:
 	encoded_string = base64.b64encode(image_file.read())
