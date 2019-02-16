@@ -4,6 +4,9 @@ A Python API wrapper for removing backgrounds from picture using remove.bg's API
 # License
 This code is licensed under GNU GPL v3.0. See [here](https://github.com/brilam/remove-bg/blob/master/LICENSE) for more details.
 
+# Installation
+`pip install removebg`
+
 # How to Use
 ## `remove_background_from_img_file`
 
