@@ -1,10 +1,11 @@
+from __future__ import absolute_import
 import requests
 import logging
 
 API_ENDPOINT = "https://api.remove.bg/v1.0/removebg"
 
 
-class RemoveBg:
+class RemoveBg(object):
 
     def __init__(self, api_key, error_log_file):
         self.__api_key = api_key
