@@ -14,7 +14,7 @@ This code is licensed under the MIT License. See [here](https://github.com/brila
 | ------------- |:-------------:| -------------|
 | img_file_path | Y             | the path to the image file      |
 | size          | N             | the size of the output image (regular = 0.25 MP, hd = 4 MP, 4k = up to 10 MP). Default value is "regular"|
-
+| color         | N             | adds a solid color background. Can be a hex color code (e.g. 81d4fa, fff) or a color name (e.g. green).|
 
 ### Code Example:
 ```python
@@ -31,6 +31,7 @@ rmbg.remove_background_from_img_file("joker.jpg")
 | img_url | Y                   | the URL to the image|
 | size          | N             | the size of the output image (regular = 0.25 MP, hd = 4 MP, 4k = up to 10 MP). Default value is "regular"|
 | new_file_name | N             | the new file name of the image with the background removed |
+| color         | N             | adds a solid color background. Can be a hex color code (e.g. 81d4fa, fff) or a color name (e.g. green).|
 
 ### Code Example:
 ```python
@@ -47,6 +48,7 @@ rmbg.remove_background_from_img_url("http://www.example.com/some_image.jpg")
 | base64_img    | Y             | the base64 image string|
 | size          | N             | the size of the output image (regular = 0.25 MP, hd = 4 MP, 4k = up to 10 MP). Default value is "regular"|
 | new_file_name | N             | the new file name of the image with the background removed |
+| color         | N             | adds a solid color background. Can be a hex color code (e.g. 81d4fa, fff) or a color name (e.g. green).|
 
 ### Code Example:
 ```python

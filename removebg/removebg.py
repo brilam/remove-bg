@@ -11,7 +11,7 @@ class RemoveBg(object):
         self.__api_key = api_key
         logging.basicConfig(filename=error_log_file)
 
-    def remove_background_from_img_file(self, img_file_path, size="regular"):
+    def remove_background_from_img_file(self, img_file_path, size="regular", bg_color=None):
         """
         Removes the background given an image file and outputs the file as the original file name with "no_bg.png"
         appended to it.
@@ -23,7 +23,10 @@ class RemoveBg(object):
         response = requests.post(
             API_ENDPOINT,
             files={'image_file': img_file},
-            data={'size': size},
+            data={
+                'size': size,
+                'bg_color': bg_color
+            },
             headers={'X-Api-Key': self.__api_key})
 
         self.__output_file__(response, img_file.name + "_no_bg.png")
@@ -31,7 +34,7 @@ class RemoveBg(object):
         # Close original file
         img_file.close()
 
-    def remove_background_from_img_url(self, img_url, size="regular", new_file_name="no-bg.png"):
+    def remove_background_from_img_url(self, img_url, size="regular", new_file_name="no-bg.png", bg_color=None):
         """
         Removes the background given an image URL and outputs the file as the given new file name.
         :param img_url: the URL to the image
@@ -42,13 +45,14 @@ class RemoveBg(object):
             API_ENDPOINT,
             data={
                 'image_url': img_url,
-                'size': size
+                'size': size,
+                'bg_color': bg_color
             },
             headers={'X-Api-Key': self.__api_key}
         )
         self.__output_file__(response, new_file_name)
 
-    def remove_background_from_base64_img(self, base64_img, size="regular", new_file_name="no-bg.png"):
+    def remove_background_from_base64_img(self, base64_img, size="regular", new_file_name="no-bg.png", bg_color=None):
         """
         Removes the background given a base64 image string and outputs the file as the given new file name.
         :param base64_img: the base64 image string
@@ -59,7 +63,8 @@ class RemoveBg(object):
             API_ENDPOINT,
             data={
                 'image_file_b64': base64_img,
-                'size': size
+                'size': size,
+                'bg_color': bg_color
             },
             headers={'X-Api-Key': self.__api_key}
         )
