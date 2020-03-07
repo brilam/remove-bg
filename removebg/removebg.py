@@ -28,7 +28,7 @@ class RemoveBg(object):
                 'bg_color': bg_color
             },
             headers={'X-Api-Key': self.__api_key})
-
+        response.raise_for_status()
         self.__output_file__(response, img_file.name + "_no_bg.png")
 
         # Close original file
@@ -50,6 +50,7 @@ class RemoveBg(object):
             },
             headers={'X-Api-Key': self.__api_key}
         )
+        response.raise_for_status()
         self.__output_file__(response, new_file_name)
 
     def remove_background_from_base64_img(self, base64_img, size="regular", new_file_name="no-bg.png", bg_color=None):
@@ -68,6 +69,7 @@ class RemoveBg(object):
             },
             headers={'X-Api-Key': self.__api_key}
         )
+        response.raise_for_status()
         self.__output_file__(response, new_file_name)
 
     def __output_file__(self, response, new_file_name):
