@@ -57,8 +57,8 @@ import base64
 
 rmbg = RemoveBg("YOUR-API-KEY", "error.log")
 with open("joker.jpg", "rb") as image_file:
-	encoded_string = base64.b64encode(image_file.read())
-    rmbg.remove_background_from_base64_img(encoded_string)
+    encoded_string = base64.b64encode(image_file.read())
+rmbg.remove_background_from_base64_img(encoded_string)
 ```
 
 # Contributions
