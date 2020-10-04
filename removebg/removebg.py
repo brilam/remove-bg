@@ -1,7 +1,6 @@
 from __future__ import absolute_import
 import requests
 import logging
-import re
 
 API_ENDPOINT = "https://api.remove.bg/v1.0/removebg"
 
