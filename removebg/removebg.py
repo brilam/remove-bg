@@ -13,19 +13,19 @@ class RemoveBg(object):
     def _check_arguments(self, size, type, type_level, format, channels):
         """Check if arguments are valid."""
         if size not in ["preview", "full", "auto", "regular", "hd", "4k"]:
-            raise Exception("size argument wrong")
+            raise ValueError("size argument wrong")
 
         if type not in ["person", "car", "product", "auto"]:
-            raise Exception("type argument wrong")
+            raise ValueError("type argument wrong")
 
         if type_level not in ["none", "latest", "1", "2"]:
-            raise Exception("type_level argument wrong")
+            raise ValueError("type_level argument wrong")
 
         if format not in ["jpg", "zip", "png", "auto"]:
-            raise Exception("format argument wrong") 
+            raise ValueError("format argument wrong") 
  
         if channels not in ["rgba", "alpha"]:
-            raise Exception("channels argument wrong") 
+            raise ValueError("channels argument wrong") 
         
     def _output_file(self, response, new_file_name):
         # If successful, write out the file
