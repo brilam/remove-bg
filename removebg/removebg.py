@@ -45,23 +45,23 @@ class RemoveBg(object):
                                        shadow=False, semitransparency=True,
                                        bg=None, bg_type=None, new_file_name="no-bg.png"):
         """
-        Removes the background given an image file and outputs the file as the original file name with "no_bg.png"
-        appended to it.
-        :param img_file_path: the path to the image file
-        :param size: the size of the output image (regular = 0.25 MP, hd = 4 MP, 4k = up to 10 MP)
-        :param type: foreground object (auto = autodetect, person, product, car)
-        :param type_level: classification level. none = no classification, 1 coarse classification, 2 specific classification (car_interior...), latest
-        :param format: png, jpg, zip
-        :param roi: region of interest, where to look for foreground object. (x1, y1, x2, y2) in px or relative (%)
-        :param crop: px or relative, single value = all sides, two vals = top/bottom and left/right, four vals (top, right, bottom, left)
-        :param scale: relative scale
-        :param position: center, original, single val (horizontal and vertical) or two vals (horizontal, vertical)
-        :param channels: rgba or alpha
-        :param shadow: true or false (some types aren't supported)
-        :param semitransparency: semitransparency for windows or glass objects...
-        :param bg: background (color, image_url, image_file)
-        :param bg_type: path, url or color
-        :param new_file_name: the new file name of the image with the background removed
+        Removes the background given an image file.
+        
+        :param img_file_path: path to the source image file
+        :param size: size of the output image (`'auto'` = highest available resolution, `'preview'`|`'small'`|`'regular'` = 0.25 MP, `'medium'` = 1.5 MP, `'hd'` = 4 MP, `'full'`|`'4k'` = original size)
+        :param type: foreground object (`'auto'` = autodetect, `'person'`, `'product'`, `'car'`)
+        :param type_level: classification level of the foreground object (`'none'` = no classification, `'1'` = coarse classification (e.g. `'car'`), `'2'` = specific classification (e.g. `'car_interior'`), `'latest'` = latest classification)
+        :param format: image format (`'auto'` = autodetect, `'png'`, `'jpg'`, `'zip'`)
+        :param roi: region of interest, where to look for foreground object (x1, y1, x2, y2) in px or relative (%)
+        :param crop: px or relative, single val = all sides, two vals = top/bottom, left/right, four vals = top, right, bottom, left
+        :param scale: image scale relative to the total image size
+        :param position: `'center'`, `'original'`, single val = horizontal and vertical, two vals = horizontal, vertical
+        :param channels: request the finalized image (`'rgba'`) or an alpha mask (`'alpha'`)
+        :param shadow: whether to add an artificial shadow (some types aren't supported)
+        :param semitransparency: semitransparency for windows or glass objects (some types aren't supported)
+        :param bg: background (`None` = no background, path, url, color hex code (e.g. `'81d4fa'`, `'fff'`), color name (e.g. `'green'`))
+        :param bg_type: background type (`None` = no background, `'path'`, `'url'`, `'color'`)
+        :param new_file_name: file name of the result image
         """
 
         self._check_arguments(size, type, type_level, format, channels)
@@ -111,22 +111,23 @@ class RemoveBg(object):
                                        shadow=False, semitransparency=True,
                                        bg=None, bg_type=None, new_file_name="no-bg.png"):
         """
-        Removes the background given an image URL and outputs the file as the given new file name.
-        :param img_url: the URL to the image
-        :param size: the size of the output image (regular = 0.25 MP, hd = 4 MP, 4k = up to 10 MP)
-        :param type: foreground object (auto = autodetect, person, product, car)
-        :param type_level: classification level. none = no classification, 1 coarse classification, 2 specific classification (car_interior...), latest
-        :param format: png, jpg, zip
-        :param roi: region of interest, where to look for foreground object. (x1, y1, x2, y2) in px or relative (%)
-        :param crop: px or relative, single value = all sides, two vals = top/bottom and left/right, four vals (top, right, bottom, left)
-        :param scale: relative scale
-        :param position: center, original, single val (horizontal and vertical) or two vals (horizontal, vertical)
-        :param channels: rgba or alpha
-        :param shadow: true or false (some types aren't supported)
-        :param semitransparency: semitransparency for windows or glass objects...
-        :param bg: background (color, image_url, image_file)
-        :param bg_type: path, url or color
-        :param new_file_name: the new file name of the image with the background removed
+        Removes the background given an image URL.
+        
+        :param img_url: URL to the source image
+        :param size: size of the output image (`'auto'` = highest available resolution, `'preview'`|`'small'`|`'regular'` = 0.25 MP, `'medium'` = 1.5 MP, `'hd'` = 4 MP, `'full'`|`'4k'` = original size)
+        :param type: foreground object (`'auto'` = autodetect, `'person'`, `'product'`, `'car'`)
+        :param type_level: classification level of the foreground object (`'none'` = no classification, `'1'` = coarse classification (e.g. `'car'`), `'2'` = specific classification (e.g. `'car_interior'`), `'latest'` = latest classification)
+        :param format: image format (`'auto'` = autodetect, `'png'`, `'jpg'`, `'zip'`)
+        :param roi: region of interest, where to look for foreground object (x1, y1, x2, y2) in px or relative (%)
+        :param crop: px or relative, single val = all sides, two vals = top/bottom, left/right, four vals = top, right, bottom, left
+        :param scale: image scale relative to the total image size
+        :param position: `'center'`, `'original'`, single val = horizontal and vertical, two vals = horizontal, vertical
+        :param channels: request the finalized image (`'rgba'`) or an alpha mask (`'alpha'`)
+        :param shadow: whether to add an artificial shadow (some types aren't supported)
+        :param semitransparency: semitransparency for windows or glass objects (some types aren't supported)
+        :param bg: background (`None` = no background, path, url, color hex code (e.g. `'81d4fa'`, `'fff'`), color name (e.g. `'green'`))
+        :param bg_type: background type (`None` = no background, `'path'`, `'url'`, `'color'`)
+        :param new_file_name: file name of the result image
         """
 
         self._check_arguments(size, type, type_level, format, channels)
@@ -172,22 +173,23 @@ class RemoveBg(object):
                                           shadow=False, semitransparency=True,
                                           bg=None, bg_type=None, new_file_name="no-bg.png"):
         """
-        Removes the background given a base64 image string and outputs the file as the given new file name.
-        :param base64_img: the base64 image string
-        :param size: the size of the output image (regular = 0.25 MP, hd = 4 MP, 4k = up to 10 MP)
-        :param type: foreground object (auto = autodetect, person, product, car)
-        :param type_level: classification level. none = no classification, 1 coarse classification, 2 specific classification (car_interior...), latest
-        :param format: png, jpg, zip
-        :param roi: region of interest, where to look for foreground object. (x1, y1, x2, y2) in px or relative (%)
-        :param crop: px or relative, single value = all sides, two vals = top/bottom and left/right, four vals (top, right, bottom, left)
-        :param scale: relative scale
-        :param position: center, original, single val (horizontal and vertical) or two vals (horizontal, vertical)
-        :param channels: rgba or alpha
-        :param shadow: true or false (some types aren't supported)
-        :param semitransparency: semitransparency for windows or glass objects...
-        :param bg: background (color, image_url, image_file)
-        :param bg_type: path, url or color
-        :param new_file_name: the new file name of the image with the background removed
+        Removes the background given a base64 image string.
+        
+        :param base64_img: base64 image string
+        :param size: size of the output image (`'auto'` = highest available resolution, `'preview'`|`'small'`|`'regular'` = 0.25 MP, `'medium'` = 1.5 MP, `'hd'` = 4 MP, `'full'`|`'4k'` = original size)
+        :param type: foreground object (`'auto'` = autodetect, `'person'`, `'product'`, `'car'`)
+        :param type_level: classification level of the foreground object (`'none'` = no classification, `'1'` = coarse classification (e.g. `'car'`), `'2'` = specific classification (e.g. `'car_interior'`), `'latest'` = latest classification)
+        :param format: image format (`'auto'` = autodetect, `'png'`, `'jpg'`, `'zip'`)
+        :param roi: region of interest, where to look for foreground object (x1, y1, x2, y2) in px or relative (%)
+        :param crop: px or relative, single val = all sides, two vals = top/bottom, left/right, four vals = top, right, bottom, left
+        :param scale: image scale relative to the total image size
+        :param position: `'center'`, `'original'`, single val = horizontal and vertical, two vals = horizontal, vertical
+        :param channels: request the finalized image (`'rgba'`) or an alpha mask (`'alpha'`)
+        :param shadow: whether to add an artificial shadow (some types aren't supported)
+        :param semitransparency: semitransparency for windows or glass objects (some types aren't supported)
+        :param bg: background (`None` = no background, path, url, color hex code (e.g. `'81d4fa'`, `'fff'`), color name (e.g. `'green'`))
+        :param bg_type: background type (`None` = no background, `'path'`, `'url'`, `'color'`)
+        :param new_file_name: file name of the result image
         """
 
         self._check_arguments(size, type, type_level, format, channels)
