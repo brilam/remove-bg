@@ -80,7 +80,7 @@ class RemoveBg(object):
             'scale': scale,
             'position': position,
             'channels': channels,
-            'add_shadow': "true" if shadow else 'false"',
+            'add_shadow': 'true' if shadow else 'false',
             'semitransparency': 'true' if semitransparency else 'false',
         }
 
@@ -146,7 +146,7 @@ class RemoveBg(object):
             'scale': scale,
             'position': position,
             'channels': channels,
-            'add_shadow': "true" if shadow else 'false"',
+            'add_shadow': 'true' if shadow else 'false',
             'semitransparency': 'true' if semitransparency else 'false',
         }
 
@@ -208,7 +208,7 @@ class RemoveBg(object):
             'scale': scale,
             'position': position,
             'channels': channels,
-            'add_shadow': "true" if shadow else 'false"',
+            'add_shadow': 'true' if shadow else 'false',
             'semitransparency': 'true' if semitransparency else 'false',
         }
 
