@@ -12,10 +12,10 @@ class RemoveBg(object):
 
     def _check_arguments(self, size, type, type_level, format, channels):
         """Check if arguments are valid."""
-        if size not in ["preview", "full", "auto", "regular", "hd", "4k"]:
+        if size not in ["auto", "preview", "small", "regular", "medium", "hd", "full", "4k"]:
             raise ValueError("size argument wrong")
 
-        if type not in ["person", "car", "product", "auto"]:
+        if type not in ["auto", "person", "product", "animal", "car", "car_interior", "car_part", "transportation", "graphics", "other"]:
             raise ValueError("type argument wrong")
 
         if type_level not in ["none", "latest", "1", "2"]:
