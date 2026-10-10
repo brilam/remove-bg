@@ -125,6 +125,24 @@ rmbg.remove_background_from_base64_img(encoded_string)
 rmbg.remove_background_from_base64_img(encoded_string, new_file_name="b64-no-bg.png")
 ```
 
+## Using a different endpoint
+
+remove.bg has announced that its self-service API stops on December 1, 2026. If you switch to a remove.bg API-compatible service (or route requests through a proxy), you can keep using this library. Pass the endpoint URL and any extra headers the service needs:
+
+```python
+from removebg import RemoveBg
+
+rmbg = RemoveBg(
+    "YOUR-API-KEY",
+    "error.log",
+    api_endpoint="https://example.com/v1.0/removebg",
+    headers={"Authorization": "Bearer YOUR-TOKEN"},
+)
+rmbg.remove_background_from_img_file("joker.jpg")
+```
+
+You can also set the `REMOVEBG_API_ENDPOINT` environment variable instead of passing `api_endpoint`. Without either, the official remove.bg endpoint is used, so existing code keeps working unchanged.
+
 ## Contributions
 
 Contributions and feature requests are always welcome.

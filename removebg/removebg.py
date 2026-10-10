@@ -1,4 +1,5 @@
 from __future__ import absolute_import
+import os
 import requests
 import logging
 from typing import Optional
@@ -18,6 +19,8 @@ class RemoveBg(object):
         error_log_file,
         timeout: Optional[float] = None,
         session: Optional[requests.Session] = None,
+        api_endpoint: Optional[str] = None,
+        headers: Optional[dict] = None,
     ):
         """Create a new RemoveBg client.
 
@@ -28,12 +31,24 @@ class RemoveBg(object):
             call (default 30s).
         :param session: Optional ``requests.Session`` for connection reuse /
             custom adapters.
+        :param api_endpoint: Optional URL of the background removal endpoint.
+            Defaults to the ``REMOVEBG_API_ENDPOINT`` environment variable,
+            then to the official remove.bg endpoint. Useful for remove.bg
+            API-compatible services, proxies and tests.
+        :param headers: Optional extra HTTP headers sent with every request
+            (e.g. an ``Authorization`` header required by such a service).
         """
         self.__api_key = api_key
         self._timeout = (
             timeout if timeout is not None else self.DEFAULT_TIMEOUT
         )
         self._session = session or requests.Session()
+        self._api_endpoint = (
+            api_endpoint
+            or os.environ.get("REMOVEBG_API_ENDPOINT")
+            or API_ENDPOINT
+        )
+        self._extra_headers = dict(headers or {})
         # Configure root logging minimally if no handlers exist yet.
         if not logging.getLogger().handlers:
             logging.basicConfig(filename=error_log_file, level=logging.ERROR)
@@ -45,6 +60,12 @@ class RemoveBg(object):
                 logging.getLogger().addHandler(fh)
             except Exception:  # pragma: no cover – best-effort logging setup.
                 pass
+
+    def _headers(self):
+        """Headers for an API request: the API key plus any extra headers."""
+        headers = {'X-Api-Key': self.__api_key}
+        headers.update(self._extra_headers)
+        return headers
 
     def _check_arguments(self, size, type, type_level, format, channels):
         """Validate arguments against allowed remove.bg values."""
@@ -161,10 +182,10 @@ class RemoveBg(object):
                     data['bg_image_url'] = bg
 
                 response = self._session.post(
-                    API_ENDPOINT,
+                    self._api_endpoint,
                     files=files,
                     data=data,
-                    headers={'X-Api-Key': self.__api_key},
+                    headers=self._headers(),
                     timeout=self._timeout)
                 response.raise_for_status()
                 if return_bytes:
@@ -236,10 +257,10 @@ class RemoveBg(object):
                 data['bg_image_url'] = bg
 
             response = self._session.post(
-                API_ENDPOINT,
+                self._api_endpoint,
                 data=data,
                 files=files if files else None,
-                headers={'X-Api-Key': self.__api_key},
+                headers=self._headers(),
                 timeout=self._timeout
             )
             response.raise_for_status()
@@ -311,10 +332,10 @@ class RemoveBg(object):
                 data['bg_image_url'] = bg
 
             response = self._session.post(
-                API_ENDPOINT,
+                self._api_endpoint,
                 data=data,
                 files=files if files else None,
-                headers={'X-Api-Key': self.__api_key},
+                headers=self._headers(),
                 timeout=self._timeout
             )
             response.raise_for_status()
