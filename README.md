@@ -1,3 +1,5 @@
+This project has been archived due to remove.bg discontinuing their self-service API as of Dec 1st, 2026. There will be no further updates.
+
 # remove-bg
 
 A Python API wrapper for removing backgrounds from picture using [remove.bg](https://www.remove.bg)'s [API](https://www.remove.bg/api).
